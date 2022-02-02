@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_contacts"
+        android:icon="@drawable/contacts_black_24dp"
+        android:title="@string/title_contacts" />
+
+    <item
+        android:id="@+id/navigation_meetings"
+        android:icon="@drawable/meetings_alt_black_24dp"
+        android:title="@string/title_meetings" />
+
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/note_alt_black_24dp"
+        android:title="@string/title_notes" />
+
+</menu>

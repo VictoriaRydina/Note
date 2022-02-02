@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Note</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="title_meetings">Meetings</string>
+    <string name="title_notes">Notes</string>
+    <string name="first_name">FirstName</string>
+    <string name="second_name">SecondName</string>
+    <string name="phone_number">PhoneNumber</string>
+</resources>
