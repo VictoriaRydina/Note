@@ -3,10 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Victoriya/Projects/Note/app/src/main/res/layout/activity_new_contact.xml" value="0.22" />
+        <entry key="..\:/Users/Victoriya/Projects/Note/app/src/main/res/layout/contact_item.xml" value="0.22" />
+        <entry key="..\:/Users/Victoriya/Projects/Note/app/src/main/res/layout/fragment_contacts.xml" value="0.22" />
+        <entry key="..\:/Users/Victoriya/Projects/Note/app/src/main/res/layout/fragment_meetings.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/drawable/corner.xml" value="0.113" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1215" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_new_contact.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/contact_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_contacts.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_meetings.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_notes.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/meeting_item.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/new_contact.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/notes_item.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/round_corners.xml" value="0.19375" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>
