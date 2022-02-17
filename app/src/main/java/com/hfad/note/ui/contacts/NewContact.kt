@@ -10,13 +10,14 @@ class NewContact : AppCompatActivity() {
 
     lateinit var binding : ActivityNewContactBinding
 
-    val myDbManager = MyDbManager(this)
+    private val myDbManager = MyDbManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityNewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 
     override fun onResume() {
@@ -29,10 +30,11 @@ class NewContact : AppCompatActivity() {
         val myNumber = binding.personNumber.text.toString()
 
         if(myName != "" && myNumber != ""){
-
             myDbManager.insertToDb(myName, myNumber)
         }
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
