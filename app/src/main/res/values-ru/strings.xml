@@ -1,0 +1,8 @@
+<resources>
+    <string name="title_contacts">Контакты</string>
+    <string name="title_meetings">Встречи</string>
+    <string name="title_notes">Заметки</string>
+    <string name="first_name">Имя</string>
+    <string name="second_name">Фамилия</string>
+    <string name="phone_number">НомерТелефона</string>
+</resources>

@@ -34,12 +34,9 @@ class NewContact : AppCompatActivity() {
         }
     }
 
-
-
     override fun onDestroy() {
         super.onDestroy()
         myDbManager.closeDb()
     }
-
 
 }

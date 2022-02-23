@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hfad.note.databinding.FragmentContactsBinding
+import com.hfad.note.db.MyDbManager
 
 class ContactsFragment : Fragment() {
 
@@ -39,6 +40,14 @@ class ContactsFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        fillAdapter()
+    }
+
+    /// onResume() {
+//    var contacts = dbHelper.getContacts()
+//    init(contacts)
 
 
     fun init(){
@@ -48,6 +57,11 @@ class ContactsFragment : Fragment() {
             rcView.adapter = adapter
             //    adapter.addContacts(contacts)
         }
+    }
+    //функция заполнения списка
+    fun fillAdapter(){
+        var contacts = MyDbManager.readDbDate()
+        adapter.addContacts(contacts)
     }
 
     override fun onDestroyView() {
