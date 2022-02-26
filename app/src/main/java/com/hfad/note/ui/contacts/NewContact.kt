@@ -3,6 +3,7 @@ package com.hfad.note.ui.contacts
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.hfad.note.R
 import com.hfad.note.databinding.ActivityNewContactBinding
 import com.hfad.note.db.MyDbManager
 
@@ -17,7 +18,6 @@ class NewContact : AppCompatActivity() {
 
         binding = ActivityNewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
     override fun onResume() {

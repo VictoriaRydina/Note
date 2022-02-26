@@ -6,44 +6,35 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.note.R
-import com.hfad.note.databinding.ActivityNewContactBinding
 
 class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
 
-    val contactList = ArrayList<NewContact>()
+    private val contactsList = ArrayList<Contact>()
 
-    class ContactHolder(item: View): RecyclerView.ViewHolder(item){
-
-        val perName = itemView.findViewById<TextView>(R.id.cont)
-        //val perNumber = itemView.findViewById<TextView>(R.id.tv_number)
-
-        val binding = ActivityNewContactBinding.bind(item)
-
-        fun bind(contact: NewContact) = with(binding){
-            perName.text = contact.toString()
-            //perNumber.text = contact.toString()
-        }
+    init {
+        contactsList.add(Contact("Victoria", "89206689238"))
+        contactsList.add(Contact("Egor", "89206689238"))
     }
 
     //Создается элемент
+    class ContactHolder(view: View): RecyclerView.ViewHolder(view) {
+        val nameTextView: TextView = view.findViewById<TextView>(R.id.contact_name)
+        val numberTextView: TextView = view.findViewById<TextView>(R.id.contact_number)
+    }
+
+    // Элемент отрисовывается на экране
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item, parent, false)
         return ContactHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return contactList.size
+        return contactsList.size
     }
 
-    //Заполняется
-    override fun onBindViewHolder(holder: ContactHolder, position: Int) {
-        holder.bind(contactList[position])
-    }
-
-    fun addContacts(contacts:ArrayList<NewContact>) {
-
-        contactList.clear()
-        contactList.addAll(contacts)
-        notifyDataSetChanged() //перерисовывает
+    //Заполняется данными
+    override fun onBindViewHolder(viewHolder: ContactHolder, position: Int) {
+        viewHolder.nameTextView.text = contactsList[position].name
+        viewHolder.numberTextView.text = contactsList[position].number
     }
 }
