@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hfad.note.databinding.FragmentContactsBinding
+import com.hfad.note.db.MyDbManager
 
 class ContactsFragment : Fragment() {
 
@@ -15,7 +16,7 @@ class ContactsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val adapter = ContactAdapter()
+    private lateinit var adapter: ContactAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,12 +25,17 @@ class ContactsFragment : Fragment() {
     ): View {
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         val root : View = binding.root
-        clickNew()
+        onClickNew()
         init()
         return root
     }
 
-    private fun clickNew() {
+    override fun onResume() {
+        super.onResume()
+        init()
+    }
+
+    private fun onClickNew() {
         binding.apply {
             buttonAdd.setOnClickListener {
                 val intent = Intent(activity, NewContact::class.java)
@@ -38,13 +44,12 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    /// onResume() {
-//    var contacts = dbHelper.getContacts()
-//    init(contacts)
-
-
-    fun init(){
+    private fun init(){
         binding.apply {
+            MyDbManager.openDb(requireContext())
+            val contactsList = MyDbManager.getContacts()
+            adapter = ContactAdapter(contactsList)
+
             rcView.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
             rcView.adapter = adapter

@@ -3,42 +3,44 @@ package com.hfad.note.db
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import com.hfad.note.ui.contacts.ContactAdapter
-import com.hfad.note.ui.contacts.NewContact
+import com.hfad.note.ui.contacts.Contact
 
-class MyDbManager(context: Context) {
-    private val myDbHelper = MyDbHelper(context)
-    var db: SQLiteDatabase? = null    //для открытия/закрытия/чтения бд
+object MyDbManager {
+    private lateinit var dbHelper: DBHelper
 
-    fun openDb() {
-        db = myDbHelper.writableDatabase
+    private var db: SQLiteDatabase? = null    //для открытия/закрытия/чтения бд
+
+    fun openDb(context: Context) {
+        dbHelper = DBHelper(context)
+        db = dbHelper.writableDatabase
     }
 
-    fun insertToDb( name: String, number : String){
+    fun insertContact(name: String, number: String) {
         val values = ContentValues().apply {
-            put(MyDbNameClass.COLUMN_NAME_NAME, name)
-            put(MyDbNameClass.COLUMN_NAME_NUMBER, number)
+            put(MyDbNameClass.COLUMN_NAME, name)
+            put(MyDbNameClass.COLUMN_NUMBER, number)
         }
         db?.insert(MyDbNameClass.TABLE_NAME, null, values)
     }
 
 
-    fun readDbDate() : ArrayList<String> {
-        val dataList = ArrayList<String>()
-        val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null,
-            null, null, null)
+    fun getContacts(): ArrayList<Contact> {
+        val contactsList = ArrayList<Contact>()
 
-        while(cursor?.moveToNext()!!) {
-            val dataText = cursor.getString(cursor.getColumnIndexOrThrow(MyDbNameClass.COLUMN_NAME_NAME))
-            val dataText2 = cursor.getString(cursor.getColumnIndexOrThrow(MyDbNameClass.COLUMN_NAME_NUMBER))
-            dataList.add(dataText.toString())
-            dataList.add(dataText2.toString())  //or getColumnIndex?
+        val cursor = db?.query(
+            MyDbNameClass.TABLE_NAME, null, null, null,
+            null, null, null
+        )
+
+        while (cursor?.moveToNext()!!) {
+            val nameString = cursor.getString(cursor.getColumnIndexOrThrow(MyDbNameClass.COLUMN_NAME))
+            val numberString =
+                cursor.getString(cursor.getColumnIndexOrThrow(MyDbNameClass.COLUMN_NUMBER))
+            contactsList.add(Contact(nameString, numberString))
         }
-        cursor.close()
-        return dataList
-    }
 
-    fun closeDb(){
-        myDbHelper.close()
+        cursor.close()
+
+        return contactsList
     }
 }

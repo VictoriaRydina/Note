@@ -7,19 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.note.R
 
-class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
+class ContactAdapter(contacts: ArrayList<Contact>): RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
 
-    private val contactsList = ArrayList<Contact>()
-
-    init {
-        contactsList.add(Contact("Victoria", "89206689238"))
-        contactsList.add(Contact("Egor", "89206689238"))
-    }
+    private val contactsList = contacts
 
     //Создается элемент
     class ContactHolder(view: View): RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById<TextView>(R.id.contact_name)
-        val numberTextView: TextView = view.findViewById<TextView>(R.id.contact_number)
+        val nameTextView: TextView = view.findViewById(R.id.contact_name)
+        val numberTextView: TextView = view.findViewById(R.id.contact_number)
     }
 
     // Элемент отрисовывается на экране

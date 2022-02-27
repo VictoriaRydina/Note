@@ -2,8 +2,6 @@ package com.hfad.note.ui.contacts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.hfad.note.R
 import com.hfad.note.databinding.ActivityNewContactBinding
 import com.hfad.note.db.MyDbManager
 
@@ -11,32 +9,29 @@ class NewContact : AppCompatActivity() {
 
     lateinit var binding : ActivityNewContactBinding
 
-    private val myDbManager = MyDbManager(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityNewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        onClickSave()
     }
 
-    override fun onResume() {
-        super.onResume()
-        myDbManager.openDb()
+    fun onClickSave() {
+        binding.apply {
+            saveNewContact.setOnClickListener {
+                saveToDb()
+            }
+        }
     }
 
-    fun onClickSave(view: View) {
+    private fun saveToDb() {
         val myName = binding.personName.text.toString()
         val myNumber = binding.personNumber.text.toString()
 
         if(myName != "" && myNumber != ""){
-            myDbManager.insertToDb(myName, myNumber)
+            MyDbManager.insertContact(myName, myNumber)
         }
+        super.finish()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        myDbManager.closeDb()
-    }
-
 }
